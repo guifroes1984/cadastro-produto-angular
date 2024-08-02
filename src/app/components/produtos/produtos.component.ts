@@ -17,9 +17,19 @@ export class ProdutosComponent implements OnInit {
   ];
 
   produto: Produto = {} as Produto;
+  produtos: Produto[] = [];
 
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  salvarProduto() {
+    this.produto.id = this.produtos.length + 1;
+    this.produtos.push(this.produto);
+    this.produto = {} as Produto;
+
+    console.log("Novo produto cadastrado. Total produtos: " + this.produtos.length);
+  }
+
 }
