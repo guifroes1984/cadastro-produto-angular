@@ -1,1 +1,58 @@
-<p>Formulário de Cadastro:</p>
+<div class="mt-3">
+  <div class="display-6">
+    Formulário de Cadastro:
+  </div>
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <form>
+        <div class="row mb-3 mt-3">
+          <label for="inputNome" class="col-sm-2 col-form-label">Nome:</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputNome" required>
+          </div>
+        </div>
+        <div class="row mb-3 mt-3">
+          <label for="inputDescricao" class="col-sm-2 col-form-label">Descrição:</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputDescricao" required>
+          </div>
+        </div>
+        <div class="row mb-3 mt-3">
+            <label for="inputPreco" class="col-sm-2 col-form-label">Preço:</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="inputPreco" required>
+            </div>
+
+            <label for="selectCategoria" class="col-sm-2 col-form-label">Categoria:</label>
+            <div class="col-sm-4">
+                <select class="form-select" aria-label="Selecione uma categoria" id="selectCategoria" required>
+                  <option value="" selected>Escolha:</option>
+                </select>
+            </div>
+        </div>
+        <div class="row mb-3 mt-3">
+            <label class="col-sm-2 col-form-label">Opções:</label>
+            <div class="col-sm-4">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="CheckBoxPromocao">
+                  <label class="form-check-label" for="CheckBoxPromocao">
+                    Promoção
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="CheckBoxNovoProduto">
+                  <label class="form-check-label" for="CheckBoxNovoProduto">
+                    Lançamentos
+                  </label>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3 mt-3">
+            <div class="col-sm-4">
+                <button type="submit" class="btn btn-primary">Cadastrar</button>
+            </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
