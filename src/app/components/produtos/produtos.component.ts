@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Categoria } from 'src/app/interfaces/Categoria';
 import { Produto } from 'src/app/interfaces/Produto';
+import { CategoriaService } from 'src/app/services/categoria.service';
 
 @Component({
   selector: 'app-produtos',
@@ -9,19 +10,15 @@ import { Produto } from 'src/app/interfaces/Produto';
 })
 export class ProdutosComponent implements OnInit {
 
-  categorias: Categoria [] = [
-    {id: 1, nome: "Produção Própria"},
-    {id: 2, nome: "Nacional"},
-    {id: 3, nome: "Importado"},
-    {id: 4, nome: "Premium"},
-  ];
+  categorias: Categoria [] = [];
 
   produto: Produto = {} as Produto;
   produtos: Produto[] = [];
 
-  constructor() { }
+  constructor(private catergoriaService: CategoriaService) { }
 
   ngOnInit(): void {
+    this.categorias = this.catergoriaService.getCategorias();
   }
 
   salvarProduto() {
