@@ -19,7 +19,17 @@
             </tr>
           </thead>
           <tbody>
-
+            <tr *ngFor="let p of produtos">
+              <td>{{p.id}}</td>
+              <td>{{p.nome}}</td>
+              <td>{{p.descricao}}</td>
+              <td>{{p.preco}}</td>
+              <td>{{p.categoria.nome}}</td>
+              <td>
+                <span *ngIf="p.promocao" class="badge bg-success text-white me-1">P</span>
+                <span *ngIf="p.novoProduto" class="badge bg-primary text-white">L</span>
+              </td>
+            </tr>
           </tbody>
         </table>
     </div>
