@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Categoria } from 'src/app/interfaces/Categoria';
+import { Produto } from 'src/app/interfaces/Produto';
 
 @Component({
   selector: 'app-produto',
@@ -11,9 +12,15 @@ export class ProdutoComponent implements OnInit {
   @Input()
   categorias: Categoria [] = [];
 
+  produto: Produto = {} as Produto;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  salvar() {
+    console.log(this.produto);
   }
 
 }
