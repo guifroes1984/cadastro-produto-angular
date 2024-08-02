@@ -23,7 +23,7 @@
               <td>{{p.id}}</td>
               <td>{{p.nome}}</td>
               <td>{{p.descricao}}</td>
-              <td>{{p.preco}}</td>
+              <td>{{p.preco | number: '1.2-2'}}</td>
               <td>{{p.categoria.nome}}</td>
               <td>
                 <span *ngIf="p.promocao" class="badge bg-success text-white me-1">P</span>
