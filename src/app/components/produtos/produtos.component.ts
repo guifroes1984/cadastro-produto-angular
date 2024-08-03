@@ -21,13 +21,19 @@ export class ProdutosComponent implements OnInit {
     private produtoService: ProdutoService) { }
 
   ngOnInit(): void {
+    this.carregarProdutos();
+    this.carregarCategorias();
+  }
 
-    this.catergoriaService.getCategorias().subscribe({
-      next: data => {this.categorias = data}
-    });
-
+  carregarProdutos() {
     this.produtoService.getProdutos().subscribe({
       next: data => {this.produtos = data}
+    });
+  }
+
+  carregarCategorias() {
+    this.catergoriaService.getCategorias().subscribe({
+      next: data => {this.categorias = data}
     });
   }
 
