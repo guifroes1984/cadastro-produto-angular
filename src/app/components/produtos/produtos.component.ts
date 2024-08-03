@@ -21,20 +21,23 @@ export class ProdutosComponent implements OnInit {
     private produtoService: ProdutoService) { }
 
   ngOnInit(): void {
-    //this.categorias = this.catergoriaService.getCategorias();
 
-    this.catergoriaService.getCategorias().subscribe(
-      {
-        next: data => {this.categorias = data}
-      }
-    );
+    this.catergoriaService.getCategorias().subscribe({
+      next: data => {this.categorias = data}
+    });
 
-    this.produtos = this.produtoService.getProdutos();
+    this.produtoService.getProdutos().subscribe({
+      next: data => {this.produtos = data}
+    });
   }
 
   salvarProduto() {
-    this.produtoService.salvar(this.produto);
-    this.produto = {} as Produto;
+    this.produtoService.salvar(this.produto).subscribe({
+      next: data => {
+        this.produtos.push(data);
+        this.produto = {} as Produto;
+      }
+    });
   }
 
 }
