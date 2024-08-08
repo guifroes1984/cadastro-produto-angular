@@ -23,19 +23,19 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let p of produtos">
-                <td>{{p.id}}</td>
-                <td>{{p.nome}}</td>
-                <td>{{p.descricao}}</td>
-                <td>{{p.preco | currency: 'BRL'}}</td>
-                <td>{{p.categoria.nome}}</td>
+              <tr *ngFor="let produto of produtos">
+                <td>{{produto.id}}</td>
+                <td>{{produto.nome}}</td>
+                <td>{{produto.descricao}}</td>
+                <td>{{produto.preco | currency: 'BRL'}}</td>
+                <td>{{produto.categoria.nome}}</td>
                 <td>
-                  <span *ngIf="p.promocao" class="badge bg-success text-white me-1">P</span>
-                  <span *ngIf="p.novoProduto" class="badge bg-primary text-white">L</span>
+                  <span *ngIf="produto.promocao" class="badge bg-success text-white me-1">P</span>
+                  <span *ngIf="produto.novoProduto" class="badge bg-primary text-white">L</span>
                 </td>
                 <td class="text-end">
-                  <button class="btn p-1"><i class="bi bi-pencil"></i></button>
-                  <button class="btn p-1"><i class="bi bi-trash"></i></button>
+                  <button class="btn p-1" (click)="editar(produto)"><i class="bi bi-pencil"></i></button>
+                  <button class="btn p-1" (click)="delete(produto)"><i class="bi bi-trash"></i></button>
                 </td>
               </tr>
             </tbody>
