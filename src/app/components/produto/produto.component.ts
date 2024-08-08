@@ -27,4 +27,8 @@ export class ProdutoComponent implements OnInit {
     this.salvarEmitter.emit();
   }
 
+  cancelar() {
+    this.produto = {} as Produto;
+  }
+
 }
