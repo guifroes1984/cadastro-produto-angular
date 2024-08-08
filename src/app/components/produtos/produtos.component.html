@@ -18,7 +18,8 @@
                 <th scope="col" class="d-none d-md-table-cell">Descrição</th>
                 <th scope="col">Preço</th>
                 <th scope="col">Categoria</th>
-                <th scope="col" class="d-none d-md-table-cell">Opções</th>
+                <th scope="col">Opções</th>
+                <th scope="col" class="d-none d-md-table-cell text-end">Ações</th>
               </tr>
             </thead>
             <tbody>
@@ -31,6 +32,10 @@
                 <td>
                   <span *ngIf="p.promocao" class="badge bg-success text-white me-1">P</span>
                   <span *ngIf="p.novoProduto" class="badge bg-primary text-white">L</span>
+                </td>
+                <td class="text-end">
+                  <button class="btn p-1"><i class="bi bi-pencil"></i></button>
+                  <button class="btn p-1"><i class="bi bi-trash"></i></button>
                 </td>
               </tr>
             </tbody>
