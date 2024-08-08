@@ -15,6 +15,9 @@ import { ProdutoComponent } from './components/produto/produto.component';
 import { ProdutosComponent } from './components/produtos/produtos.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { registerLocaleData } from '@angular/common';
+import { NavbarComponent } from './navbar/navbar.component';
+import { HomeComponent } from './home/home.component';
+import { CategoriasComponent } from './categorias/categorias.component';
 
 registerLocaleData(localePt, 'pt');
 
@@ -24,7 +27,10 @@ registerLocaleData(localePt, 'pt');
     HeaderComponent,
     ProdutoComponent,
     ProdutosComponent,
-    FooterComponent
+    FooterComponent,
+    NavbarComponent,
+    HomeComponent,
+    CategoriasComponent
   ],
   imports: [
     BrowserModule,
