@@ -16,6 +16,8 @@ export class ProdutosComponent implements OnInit {
   produto: Produto = {} as Produto;
   produtos: Produto[] = [];
 
+  showForm: boolean = false;
+
   constructor(
     private catergoriaService: CategoriaService,
     private produtoService: ProdutoService) { }
@@ -37,13 +39,21 @@ export class ProdutosComponent implements OnInit {
     });
   }
 
-  salvarProduto() {
-    this.produtoService.salvar(this.produto).subscribe({
-      next: data => {
-        this.produtos.push(data);
-        this.produto = {} as Produto;
-      }
-    });
+  salvarProduto(salvar: boolean) {
+
+    if (salvar) {
+      this.produtoService.salvar(this.produto).subscribe({
+        next: data => {
+          this.produtos.push(data);
+        }
+      });
+    }
+    this.produto = {} as Produto;
+    this.showForm = false;
+  }
+
+  criar() {
+    this.showForm = true;
   }
 
 }

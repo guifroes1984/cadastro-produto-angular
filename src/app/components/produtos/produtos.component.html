@@ -1,37 +1,41 @@
 <div class="container mt-3">
-  <app-produto [categorias]="categorias" [produto]="produto" (salvarEmitter)="salvarProduto()"></app-produto>
+  <app-produto *ngIf="showForm" [categorias]="categorias" [produto]="produto" (salvarEmitter)="salvarProduto($event)"></app-produto>
 
-  <div class="display-6">
-    Produtos de Cadastrados:
-  </div>
+  <div *ngIf="!showForm">
 
-  <div class="row">
-    <div class="col-md-10 offset-md-1">
-        <table class="table" id="produtosTable">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Nome</th>
-              <th scope="col" class="d-none d-md-table-cell">Descrição</th>
-              <th scope="col">Preço</th>
-              <th scope="col">Categoria</th>
-              <th scope="col" class="d-none d-md-table-cell">Opções</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let p of produtos">
-              <td>{{p.id}}</td>
-              <td>{{p.nome}}</td>
-              <td>{{p.descricao}}</td>
-              <td>{{p.preco | currency: 'BRL'}}</td>
-              <td>{{p.categoria.nome}}</td>
-              <td>
-                <span *ngIf="p.promocao" class="badge bg-success text-white me-1">P</span>
-                <span *ngIf="p.novoProduto" class="badge bg-primary text-white">L</span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+    <button class="btn btn-primary" (click)="criar()">Novo</button>
+    <div class="display-6">
+      Produtos de Cadastrados:
+    </div>
+
+    <div class="row">
+      <div class="col-md-10 offset-md-1">
+          <table class="table" id="produtosTable">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col" class="d-none d-md-table-cell">Descrição</th>
+                <th scope="col">Preço</th>
+                <th scope="col">Categoria</th>
+                <th scope="col" class="d-none d-md-table-cell">Opções</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let p of produtos">
+                <td>{{p.id}}</td>
+                <td>{{p.nome}}</td>
+                <td>{{p.descricao}}</td>
+                <td>{{p.preco | currency: 'BRL'}}</td>
+                <td>{{p.categoria.nome}}</td>
+                <td>
+                  <span *ngIf="p.promocao" class="badge bg-success text-white me-1">P</span>
+                  <span *ngIf="p.novoProduto" class="badge bg-primary text-white">L</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
     </div>
   </div>
 </div>
