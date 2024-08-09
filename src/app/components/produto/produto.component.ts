@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Categoria } from 'src/app/interfaces/Categoria';
 import { Produto } from 'src/app/interfaces/Produto';
 
@@ -18,7 +19,19 @@ export class ProdutoComponent implements OnInit {
   @Output()
   salvarEmitter = new EventEmitter();
 
-  constructor() { }
+  formGroupProduto: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) {
+    this.formGroupProduto = this.formBuilder.group({
+      id: [''],
+      nome: [''],
+      descricao: [''],
+      categoria: [''],
+      preco: [''],
+      novoProduto: [''],
+      promocao: ['']
+    });
+   }
 
   ngOnInit(): void {
   }
