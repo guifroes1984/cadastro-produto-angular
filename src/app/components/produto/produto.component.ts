@@ -34,7 +34,9 @@ export class ProdutoComponent implements OnInit, OnChanges {
    }
 
   ngOnChanges(): void {
-    this.formGroupProduto.setValue(this.produto);
+    if (this.produto.id) {
+      this.formGroupProduto.setValue(this.produto);
+    }
   }
 
   ngOnInit(): void {
