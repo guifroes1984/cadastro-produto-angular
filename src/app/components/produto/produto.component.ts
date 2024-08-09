@@ -1,6 +1,6 @@
 import { Produto } from './../../interfaces/Produto';
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Categoria } from 'src/app/interfaces/Categoria';
 
 @Component({
@@ -24,10 +24,10 @@ export class ProdutoComponent implements OnInit, OnChanges {
   constructor(private formBuilder: FormBuilder) {
     this.formGroupProduto = this.formBuilder.group({
       id: {value: null, disabled: true},
-      nome: [''],
-      descricao: [''],
-      categoria: [''],
-      preco: [''],
+      nome: ['', [Validators.required, Validators.minLength(3)]],
+      descricao: ['', [Validators.required]],
+      categoria: ['', [Validators.required]],
+      preco: ['', [Validators.required]],
       novoProduto: [''],
       promocao: ['']
     });
