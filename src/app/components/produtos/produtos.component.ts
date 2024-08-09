@@ -18,6 +18,8 @@ export class ProdutosComponent implements OnInit {
 
   showForm: boolean = false;
 
+  estaEditando: boolean = false;
+
   constructor(
     private catergoriaService: CategoriaService,
     private produtoService: ProdutoService) { }
@@ -40,16 +42,20 @@ export class ProdutosComponent implements OnInit {
   }
 
   salvarProduto(salvar: boolean) {
-
     if (salvar) {
-      this.produtoService.salvar(this.produto).subscribe({
-        next: data => {
-          this.produtos.push(data);
-        }
-      });
+      if (this.estaEditando) {
+        this.produtoService.atualizar(this.produto).subscribe();
+      } else {
+        this.produtoService.salvar(this.produto).subscribe({
+          next: data => {
+            this.produtos.push(data);
+          }
+        });
+      }
     }
     this.produto = {} as Produto;
     this.showForm = false;
+    this.estaEditando = false;
   }
 
   criar() {
@@ -57,7 +63,9 @@ export class ProdutosComponent implements OnInit {
   }
 
   editar(produto: Produto) {
-    console.log(produto)
+    this.produto = produto;
+    this.showForm = true;
+    this.estaEditando = true;
   }
 
   delete(produto: Produto) {

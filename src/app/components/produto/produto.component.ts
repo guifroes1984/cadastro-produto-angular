@@ -31,4 +31,8 @@ export class ProdutoComponent implements OnInit {
     this.salvarEmitter.emit(false);
   }
 
+  selectedCategoria(categoria1: Categoria, categoria2: Categoria) {
+    return categoria1 && categoria2 ? categoria1.id === categoria2.id : false;
+  }
+
 }
