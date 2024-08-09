@@ -4,31 +4,32 @@
   </div>
   <div class="row">
     <div class="col-md-10 offset-md-1">
-      <form #formProduto="ngForm">
+      <form [formGroup]="formGroupProduto">
 
         <div *ngIf="produto.id" class="row mb-3 mt-3">
           <label for="inputId" class="col-sm-2 col-form-label">ID:</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" name="id" id="inputId" [(ngModel)]="produto.id" disabled>
+            <input type="text" class="form-control" name="id" id="inputId" formControlName="id" readonly>
           </div>
         </div>
 
         <div class="row mb-3 mt-3">
           <label for="inputNome" class="col-sm-2 col-form-label">Nome:</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" name="nome" id="inputNome" required [(ngModel)]="produto.nome">
+            <input type="text" class="form-control" name="nome" id="inputNome" formControlName="nome">
           </div>
         </div>
+
         <div class="row mb-3 mt-3">
           <label for="inputDescricao" class="col-sm-2 col-form-label">Descrição:</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" name="descricao" id="inputDescricao" required [(ngModel)]="produto.descricao">
+            <input type="text" class="form-control" name="descricao" id="inputDescricao" formControlName="descricao">
           </div>
         </div>
         <div class="row mb-3 mt-3">
             <label for="inputPreco" class="col-sm-2 col-form-label">Preço:</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="preco" id="inputPreco" required [(ngModel)]="produto.preco">
+                <input type="text" class="form-control" name="preco" id="inputPreco" formControlName="preco">
             </div>
 
             <label for="selectCategoria" class="col-sm-2 col-form-label">Categoria:</label>
@@ -36,8 +37,8 @@
                 <select class="form-select"
                     aria-label="Selecione uma categoria"
                     name="categoria"
-                    id="selectCategoria" required
-                    [(ngModel)]="produto.categoria"
+                    id="selectCategoria"
+                    formControlName="categoria"
                     [compareWith]="selectedCategoria"
                     >
 
@@ -51,13 +52,13 @@
             <label class="col-sm-2 col-form-label">Opções:</label>
             <div class="col-sm-4">
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" name="promocao" id="CheckBoxPromocao" [(ngModel)]="produto.promocao">
+                  <input class="form-check-input" type="checkbox" value="" name="promocao" id="CheckBoxPromocao" formControlName="promocao">
                   <label class="form-check-label" for="CheckBoxPromocao">
                     Promoção
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" name="novoProduto" id="CheckBoxNovoProduto" [(ngModel)]="produto.novoProduto">
+                  <input class="form-check-input" type="checkbox" value="" name="novoProduto" id="CheckBoxNovoProduto" formControlName="novoProduto">
                   <label class="form-check-label" for="CheckBoxNovoProduto">
                     Lançamentos
                   </label>
@@ -66,7 +67,7 @@
         </div>
         <div class="row mb-3 mt-3">
             <div class="col-sm-4">
-                <button type="submit" class="btn btn-primary me-1" (click)="salvar()" [disabled]="formProduto.invalid">Salvar</button>
+                <button type="submit" class="btn btn-primary me-1" (click)="salvar()" [disabled]="formGroupProduto.invalid">Salvar</button>
                 <button type="button" class="btn btn-danger" (click)="cancelar()">Cancelar</button>
             </div>
         </div>
