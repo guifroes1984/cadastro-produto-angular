@@ -22,4 +22,8 @@ export class ProdutoService {
     return this.http.put<Produto>(`http://localhost:8080/produtos/${produto.id}`, produto);
   }
 
+  delete(produto: Produto) {
+    return this.http.delete<void>(`http://localhost:8080/produtos/${produto.id}`);
+  }
+
 }

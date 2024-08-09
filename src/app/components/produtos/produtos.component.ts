@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Categoria } from 'src/app/interfaces/Categoria';
 import { Produto } from 'src/app/interfaces/Produto';
 import { CategoriaService } from 'src/app/services/categoria.service';
@@ -14,6 +15,7 @@ export class ProdutosComponent implements OnInit {
   categorias: Categoria [] = [];
 
   produto: Produto = {} as Produto;
+  deleteProduto: Produto = {} as Produto;
   produtos: Produto[] = [];
 
   showForm: boolean = false;
@@ -22,7 +24,9 @@ export class ProdutosComponent implements OnInit {
 
   constructor(
     private catergoriaService: CategoriaService,
-    private produtoService: ProdutoService) { }
+    private produtoService: ProdutoService,
+    private modalService: NgbModal
+  ) { }
 
   ngOnInit(): void {
     this.carregarProdutos();
@@ -68,8 +72,20 @@ export class ProdutosComponent implements OnInit {
     this.estaEditando = true;
   }
 
-  delete(produto: Produto) {
-    console.log(produto)
+  delete(modal: any, produto: Produto) {
+    this.deleteProduto = produto;
+    this.modalService.open(modal).result.then(
+      (confirma) => {
+        if (confirma) {
+          this.produtoService.delete(produto).subscribe({
+            next: () => {
+              this.produtos = this.produtos.filter(p => p.id !== produto.id);
+            }
+          });
+        }
+      }
+    );
+
   }
 
 }
