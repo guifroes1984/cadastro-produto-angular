@@ -1,5 +1,5 @@
 import { Produto } from './../../interfaces/Produto';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Categoria } from 'src/app/interfaces/Categoria';
 
@@ -8,7 +8,7 @@ import { Categoria } from 'src/app/interfaces/Categoria';
   templateUrl: './produto.component.html',
   styleUrls: ['./produto.component.css']
 })
-export class ProdutoComponent implements OnInit {
+export class ProdutoComponent implements OnInit, OnChanges {
 
   @Input()
   categorias: Categoria [] = [];
@@ -32,6 +32,10 @@ export class ProdutoComponent implements OnInit {
       promocao: ['']
     });
    }
+
+  ngOnChanges(): void {
+    this.formGroupProduto.setValue(this.produto);
+  }
 
   ngOnInit(): void {
   }
