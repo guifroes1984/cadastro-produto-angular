@@ -1,7 +1,7 @@
+import { Produto } from './../../interfaces/Produto';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Categoria } from 'src/app/interfaces/Categoria';
-import { Produto } from 'src/app/interfaces/Produto';
 
 @Component({
   selector: 'app-produto',
@@ -14,7 +14,7 @@ export class ProdutoComponent implements OnInit {
   categorias: Categoria [] = [];
 
   @Input()
-  produto?: Produto
+  produto: Produto = {} as Produto;
 
   @Output()
   salvarEmitter = new EventEmitter();
@@ -37,6 +37,7 @@ export class ProdutoComponent implements OnInit {
   }
 
   salvar() {
+    Object.assign(this.produto, this.formGroupProduto.value);
     this.salvarEmitter.emit(true);
   }
 
