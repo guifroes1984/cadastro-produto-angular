@@ -43,8 +43,10 @@ export class ProdutoComponent implements OnInit, OnChanges {
   }
 
   salvar() {
-    Object.assign(this.produto, this.formGroupProduto.value);
-    this.salvarEmitter.emit(true);
+    if (this.formGroupProduto.valid) {
+      Object.assign(this.produto, this.formGroupProduto.value);
+      this.salvarEmitter.emit(true);
+    }
   }
 
   cancelar() {
@@ -54,5 +56,10 @@ export class ProdutoComponent implements OnInit, OnChanges {
   selectedCategoria(categoria1: Categoria, categoria2: Categoria) {
     return categoria1 && categoria2 ? categoria1.id === categoria2.id : false;
   }
+
+  get pfgNome() {return this.formGroupProduto.get("nome")}
+  get pfgDescricao() {return this.formGroupProduto.get("descricao")}
+  get pfgCategoria() {return this.formGroupProduto.get("categoria")}
+  get pfgPreco() {return this.formGroupProduto.get("preco")}
 
 }

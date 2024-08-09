@@ -4,7 +4,7 @@
   </div>
   <div class="row">
     <div class="col-md-10 offset-md-1">
-      <form [formGroup]="formGroupProduto">
+      <form [formGroup]="formGroupProduto" #ngformGroupProduto="ngForm">
 
         <div *ngIf="produto.id" class="row mb-3 mt-3">
           <label for="inputId" class="col-sm-2 col-form-label">ID:</label>
@@ -17,6 +17,10 @@
           <label for="inputNome" class="col-sm-2 col-form-label">Nome:</label>
           <div class="col-sm-10">
             <input type="text" class="form-control" name="nome" id="inputNome" formControlName="nome">
+            <div *ngIf="ngformGroupProduto.submitted">
+              <small *ngIf="pfgNome?.errors?.['required']" class="form-text text-danger">*Nome é requerido.</small>
+              <small *ngIf="pfgNome?.errors?.['minlength']" class="form-text text-danger">*Tamanho mínimo de 3 caracteres.</small>
+            </div>
           </div>
         </div>
 
@@ -24,12 +28,18 @@
           <label for="inputDescricao" class="col-sm-2 col-form-label">Descrição:</label>
           <div class="col-sm-10">
             <input type="text" class="form-control" name="descricao" id="inputDescricao" formControlName="descricao">
+            <div *ngIf="ngformGroupProduto.submitted">
+              <small *ngIf="pfgDescricao?.errors?.['required']" class="form-text text-danger">*Descrição é requerido.</small>
+            </div>
           </div>
         </div>
         <div class="row mb-3 mt-3">
             <label for="inputPreco" class="col-sm-2 col-form-label">Preço:</label>
             <div class="col-sm-4">
                 <input type="text" class="form-control" name="preco" id="inputPreco" formControlName="preco">
+                <div *ngIf="ngformGroupProduto.submitted">
+                  <small *ngIf="pfgPreco?.errors?.['required']" class="form-text text-danger">*Preço é requerido.</small>
+                </div>
             </div>
 
             <label for="selectCategoria" class="col-sm-2 col-form-label">Categoria:</label>
@@ -39,13 +49,14 @@
                     name="categoria"
                     id="selectCategoria"
                     formControlName="categoria"
-                    [compareWith]="selectedCategoria"
-                    >
-
+                    [compareWith]="selectedCategoria">
                     <option *ngFor="let cat of categorias" [ngValue]="cat">
                       {{cat.nome}}
                     </option>
                 </select>
+                <div *ngIf="ngformGroupProduto.submitted">
+                  <small *ngIf="pfgCategoria?.errors?.['required']" class="form-text text-danger">*Categoria é requerida.</small>
+                </div>
             </div>
         </div>
         <div class="row mb-3 mt-3">
@@ -67,7 +78,7 @@
         </div>
         <div class="row mb-3 mt-3">
             <div class="col-sm-4">
-                <button type="submit" class="btn btn-primary me-1" (click)="salvar()" [disabled]="formGroupProduto.invalid">Salvar</button>
+                <button type="submit" class="btn btn-primary me-1" (click)="salvar()">Salvar</button>
                 <button type="button" class="btn btn-danger" (click)="cancelar()">Cancelar</button>
             </div>
         </div>
